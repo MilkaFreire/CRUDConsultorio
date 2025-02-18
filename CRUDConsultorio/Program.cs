@@ -1,4 +1,14 @@
-﻿int opcao = 0;
+﻿
+
+
+
+
+
+
+
+
+
+/*int opcao = 0;
 
 List<Paciente> pacientes = new List<Paciente>();
 
@@ -70,7 +80,8 @@ do
             }
 
         case 3:
-            {
+            { 
+                
                 Console.WriteLine("");
                 break;
             }
@@ -88,4 +99,4 @@ do
         default:
             break;
     }
-} while (opcao != 5);
+} while (opcao != 5);*/
