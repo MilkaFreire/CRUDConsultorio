@@ -14,21 +14,21 @@ namespace CRUDConsultorio
         {
             try
             {
-                string slq = "INSERT INTO Pacientes (Nome, Cpf ,Email, Telefone, DataNascimento)" +
+                string sql = "INSERT INTO Pacientes (Nome, Cpf, Email, Telefone, DataNascimento)" +
                 "VALUES (@Nome,@Cpf, @Email, @Telefone, @DataNascimento)";
 
-                MySqlCommand comando = new MySqlCommand(slq, Conexao.Conectar());
-                comando.Parameters.AddWithValue("@nome", paciente.Nome);
-                comando.Parameters.AddWithValue("@email", paciente.Cpf);
-                comando.Parameters.AddWithValue("@telefone", paciente.Email);
-                comando.Parameters.AddWithValue("@dataNasc", paciente.Telefone);
-                comando.Parameters.AddWithValue("@dataNasc", paciente.DataNascimento);
+                MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
+                comando.Parameters.AddWithValue("@Nome", paciente.Nome);
+                comando.Parameters.AddWithValue("@Cpf", paciente.Cpf);
+                comando.Parameters.AddWithValue("@Email", paciente.Email);
+                comando.Parameters.AddWithValue("@Telefone", paciente.Telefone);
+                comando.Parameters.AddWithValue("@DataNascimento", paciente.DataNascimento);
 
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Erro ao cadastrar aluno {ex.Message}");
+                throw new Exception($"Erro ao cadastrar paciente {ex.Message}");
             }
 
         }
@@ -72,7 +72,7 @@ namespace CRUDConsultorio
             }
         }
 
-        public List<Paciente> List()
+        public List<Paciente> Listar()
         {
             List<Paciente> pacientes = new List<Paciente>();
             try

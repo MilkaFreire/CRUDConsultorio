@@ -1,17 +1,9 @@
 ﻿
 
 
+using CRUDConsultorio;
 
-
-
-
-
-
-
-/*int opcao = 0;
-
-List<Paciente> pacientes = new List<Paciente>();
-
+int opcao = 0;
 
 
 do
@@ -34,28 +26,34 @@ do
             {
 
 
-                Console.WriteLine("Digite o Idpaciente:");
-                int IdPaciente = int.Parse(Console.ReadLine());
-
+             
                 Console.WriteLine("Digite o nome do paciente:");
-                string nome = Console.ReadLine();
+                string Nome = Console.ReadLine();
 
                 Console.WriteLine("Digite o cpf do paciente:");
-                string cpf = Console.ReadLine();
+                string Cpf = Console.ReadLine();
 
                 Console.WriteLine("Digite o Email do paciente:");
                 string Email = Console.ReadLine();
 
                 Console.WriteLine("Digite o telefone do paciente:");
-                string telefone = Console.ReadLine();
+                string Telefone = Console.ReadLine();
 
                 Console.WriteLine("Digite a data de nascimento do paciente:");
                 string DataNascimento = Console.ReadLine();
 
 
-                Paciente p = new Paciente(IdPaciente, nome, cpf, Email, telefone, DataNascimento);
+                Paciente p = new Paciente();
+                p.Nome = Nome;
+                p.Cpf = Cpf;
+                p.Email = Email;
+                p.Telefone =Telefone;
+                p.DataNascimento = DataNascimento;
+                PacienteDAO pacienteDAO = new PacienteDAO();
 
-                pacientes.Add(p);
+                pacienteDAO.Salvar(p);
+
+                Console.WriteLine("Paciente cadastrado com sucesso!");
             }
 
 
@@ -64,10 +62,11 @@ do
 
         case 2:
             {
+                PacienteDAO pacienteDAO = new PacienteDAO();
+                List<Paciente> pacientes =pacienteDAO.Listar();
+
                 foreach (Paciente p2 in pacientes)
                 {
-                    Console.WriteLine("############");
-                    Console.WriteLine($"IdPaciente:{p2.IdPaciente}");
                     Console.WriteLine($"nome:{p2.Nome}");
                     Console.WriteLine($"cpf:{p2.Cpf}");
                     Console.WriteLine($"Email:{p2.Email}");
@@ -76,20 +75,68 @@ do
                    
                 }
 
-                break;
             }
+            break;
+
 
         case 3:
-            { 
-                
-                Console.WriteLine("");
-                break;
+            {
+
+                try
+                {
+                    PacienteDAO pacienteDAO = new PacienteDAO();
+
+                    Console.WriteLine("Digite o Id do paciente que deseja excluir:");
+                    int IdExcluir = Convert.ToInt32(Console.ReadLine());
+                    pacienteDAO.Deletar(IdExcluir);
+                    Console.WriteLine("Paciente excluido com sucesso!");
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"Erro ao deletar paciente: {ex.Message}");
+                }                
+
             }
+            break;
 
         case 4:
             {
-                break;
+
+                PacienteDAO pacienteDAO = new PacienteDAO();
+
+                Console.WriteLine("Digite o ID do paciente que deseja atualizar:");
+                int IdAtualizar = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Como deseja atualizar o nome do paciente?");
+                string nomeAtualizado = Console.ReadLine();  
+                
+                Console.WriteLine("Como deseja atualizar o CPF do paciente?");
+                string CpfAtualizado = Console.ReadLine();    
+                
+                Console.WriteLine("Como deseja atualizar o Email do paciente?");
+                string EmailAtualizado = Console.ReadLine();
+
+                 Console.WriteLine("Como deseja atualizar o Telefone do paciente?");
+                string TelefoneAtualizado = Console.ReadLine();
+
+
+                Console.WriteLine("Como deseja atualizar a DataNascimento do paciente?");
+                string DataNascimentoAtualizado = Console.ReadLine();
+
+                Paciente paciente = new Paciente();
+                paciente.IdPaciente = IdAtualizar;
+                paciente.Cpf = CpfAtualizado;
+                paciente.Email = EmailAtualizado;
+                paciente.Telefone = TelefoneAtualizado;
+                paciente.DataNascimento = DataNascimentoAtualizado;
+
+                pacienteDAO.Atualizar(paciente);
+
+                Console.WriteLine(" Paciente atualizado com sucesso!");
+
+
             }
+            break;
 
         case 5:
             {
@@ -99,4 +146,4 @@ do
         default:
             break;
     }
-} while (opcao != 5);*/
+} while (opcao != 5);

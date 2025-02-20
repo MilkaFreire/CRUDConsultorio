@@ -10,7 +10,7 @@ namespace CRUDConsultorio.data
     internal class Conexao
     {
         static MySqlConnection conexao;
-        static string strconexao ="server=localhost;Port=3307;uid=root;pwd=root;database=CadastrarPacientes";
+        static string strconexao = "server=localhost;uid=root;pwd=root;database=bvCadastrarPacientes";
 
         public static MySqlConnection Conectar()
         {
